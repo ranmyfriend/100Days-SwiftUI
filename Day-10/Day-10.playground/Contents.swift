@@ -1,6 +1,6 @@
 //Learning Resource : https://www.hackingwithswift.com/100/swiftui
 //Learner: @ranmyfriend
-//Date: August 10.2020
+//Date: August 11.2020
 //Subject: Swift
 //Day -10
 //Classes & Inheritance
