@@ -54,7 +54,8 @@ struct ContentView: View {
                     Text("$\(totalPerPerson, specifier: "%.2f")")
                 }
                 Section {
-                    Text("Total amount for the check:$\(originalAmountPlusTip, specifier: "%.2f")")
+                        Text("Total amount for the check:$\(originalAmountPlusTip, specifier: "%.2f")")
+                            .foregroundColor(tipPercentage == 4 ? .red : .black) //4th Index goes to Zero Tip
                 }
             }
             .navigationBarTitle("WeSplit")

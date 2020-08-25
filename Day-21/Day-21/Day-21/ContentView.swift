@@ -15,6 +15,21 @@ import SwiftUI
 //2.Showing the player’s score with an alert
 //3.Styling our flags
 
+struct FlagView: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(.white)
+            .font(.largeTitle)
+    }
+}
+
+extension View {
+    func flagStyle() -> some View {
+        self.modifier(FlagView())
+    }
+}
+
 struct ContentView: View {
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled() //This Shuffle will automatically take cares of ordering in randomized.
     @State private var correctAnswer = Int.random(in: 0...2)
@@ -30,10 +45,15 @@ struct ContentView: View {
                 VStack {
                     Text("Tap the flag of")
                         .foregroundColor(.white)
-                    Text(countries[correctAnswer])
-                        .foregroundColor(.white)
-                        .font(.largeTitle)
                         .fontWeight(.black)
+                    
+                    Text(countries[correctAnswer])
+                        .fontWeight(.black)
+                        .flagStyle()
+                    /* The below code are moved into FlagView custom class*/
+//                        .foregroundColor(.white)
+//                        .font(.largeTitle)
+//                        .fontWeight(.black)
                 }
                 ForEach(0 ..< 3) { number in
                     Button(action: {
