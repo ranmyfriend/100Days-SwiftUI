@@ -34,14 +34,14 @@ struct TableInfo {
 
 struct Tables {
     let info:[TableInfo] = [
-        TableInfo(question: "5 ╳ 1 = ?", ans: 5, table: .oneX),
-        TableInfo(question: "8 ╳ 1 = ?", ans: 8, table: .oneX),
+        TableInfo(question: "5 * 1 = ?", ans: 5, table: .oneX),
+        TableInfo(question: "8 * 1 = ?", ans: 8, table: .oneX),
         
-        TableInfo(question: "2 ╳ 2 = ?", ans: 4, table: .twoX),
-        TableInfo(question: "16 ╳ 2 = ?", ans: 32, table: .twoX),
+        TableInfo(question: "2 * 2 = ?", ans: 4, table: .twoX),
+        TableInfo(question: "16 * 2 = ?", ans: 32, table: .twoX),
         
-        TableInfo(question: "7 ╳ 3 = ?", ans: 21, table: .threeX),
-        TableInfo(question: "16 ╳ 3 = ?", ans: 48, table: .threeX),
+        TableInfo(question: "7 * 3 = ?", ans: 21, table: .threeX),
+        TableInfo(question: "16 * 3 = ?", ans: 48, table: .threeX),
     ]
     
     var presentTablesFound: [Table] {
@@ -59,6 +59,7 @@ struct Tables {
     var randomQuestion: TableInfo? {
         info.randomElement()
     }
+    
 }
 
 struct ContentView: View {
@@ -69,34 +70,60 @@ struct ContentView: View {
     @State private var answer: String = ""
     @State private var isAnsCorrect: Bool = false
     
+    var howManyRandomQuestions:Array<Int> = [1,5,10]
+    @State private var maxRandomSelected = 0
+    
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading, spacing: 20) {
-                Text("Currently 1 Random Question supported here.")
-                .foregroundColor(Color.red)
-                .font(.largeTitle)
+            VStack(alignment: .center, spacing: 20) {
+                Text("Currently '1' Random Question supported here.")
+                    .foregroundColor(Color.red)
+                    .font(.system(size: 17, weight: .bold, design: .rounded))
                 
-                Stepper("Select a Multiplication Table you want?: \(selectedTable) ╳ 1", value: $selectedTable, in: 1...12)
-                    .frame(height: 65)
+                Picker("How many Questions you want Ans?", selection: $maxRandomSelected) {
+                    ForEach(howManyRandomQuestions, id: \.self) { q in
+                        Text(String(q))
+                            .font(.system(size: 17))
+                    }
+                    }.pickerStyle(SegmentedPickerStyle())
+                
+                    Stepper("Select a Multiplication Table?\n Ex: \(selectedTable) * 1", value: $selectedTable, in: 1...12)
+                    .frame(width: UIScreen.main.bounds.size.width - 40, height: 65)
+                    .font(.system(size: 17, weight: .bold, design: .rounded))
                     .foregroundColor(Color.blue)
-                Button("Enter") {
+                
+                
+                Button(action: {
                     self.isUserInterested = true
+                }) {
+                    Text("START GAME")
+                        .font(.system(size: 17, weight: .bold))
+                        .foregroundColor(.blue)
+                        .frame(width: 200, height: 50)
+                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.blue, lineWidth: 2))
                 }
-                .font(.largeTitle)
-                .foregroundColor(.blue)
+                
+                
                 if self.isUserInterested {
                     Text("Random Question: \(randomQuest.question)")
-                    TextField("Enter your ans",text: $answer,onCommit: {
+                    .font(.system(size: 21, weight: .bold, design: .rounded))
+                    .foregroundColor(.red)
+
+                    TextField("Enter your ans", text: $answer, onCommit: {
                         let ans = Int(self.answer) ?? 0
                         let selectedTablee = Table(rawValue: self.selectedTable)!
                         self.isAnsCorrect = ContentView.tables.isAnsCorrect(quest: self.randomQuest.question, table: selectedTablee, ans: ans)
                     })
+                    .font(.system(size: 21, weight: .heavy, design: .rounded))
+                    .frame(width: UIScreen.main.bounds.size.width - 40, height: 50)
                 }
                 if self.isAnsCorrect {
-                    Text(self.randomQuest.question + "\(answer) is Correct").foregroundColor(.green).font(.largeTitle)
+                    Text(self.randomQuest.question + "\(answer) is Correct")
+                        .foregroundColor(.green)
+                        .font(.system(size: 21, weight: .heavy, design: .rounded))
                 }
             }
-        .navigationBarTitle("Day 35 Challenge Project")
+            .navigationBarTitle(Text("Day 35 Challenge Project"), displayMode: .inline)
         }
     }
 }
