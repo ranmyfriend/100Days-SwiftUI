@@ -71,57 +71,79 @@ struct ContentView: View {
     @State private var isAnsCorrect: Bool = false
     
     var howManyRandomQuestions:Array<Int> = [1,5,10]
-    @State private var maxRandomSelected = 0
+    @State private var maxRandomSelected = 1
     
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 20) {
-                Text("Currently '1' Random Question supported here.")
-                    .foregroundColor(Color.red)
-                    .font(.system(size: 17, weight: .bold, design: .rounded))
+                VStack {
+                    Text("Currently '1' Random Question supported here.")
+                        .foregroundColor(Color.red)
+                        .font(.system(size: 17, weight: .bold, design: .rounded))
+                        .padding(.top, 20)
+                        .padding(.bottom, 50)
+                }
                 
-                Picker("How many Questions you want Ans?", selection: $maxRandomSelected) {
-                    ForEach(howManyRandomQuestions, id: \.self) { q in
-                        Text(String(q))
-                            .font(.system(size: 17))
+                VStack {
+                    Text("How many Questions you want Ans?")                    .font(.system(size: 17, weight: .bold))
+                    
+                    Picker("", selection: $maxRandomSelected) {
+                        ForEach(howManyRandomQuestions, id: \.self) { q in
+                            Text(String(q))
+                                .font(.system(size: 17))
+                        }
+                        }.pickerStyle(SegmentedPickerStyle())
+                        .padding(20)
+                    
+                    HStack {
+                        Spacer(minLength: 20)
+                        Stepper("Select a Multiplication Table?\n Ex: \(selectedTable) * 1", value: $selectedTable, in: 1...12)
+                            .font(.system(size: 17, weight: .bold, design: .rounded))
+                            .foregroundColor(Color.blue)
+                        Spacer(minLength: 20)
                     }
-                    }.pickerStyle(SegmentedPickerStyle())
-                
-                    Stepper("Select a Multiplication Table?\n Ex: \(selectedTable) * 1", value: $selectedTable, in: 1...12)
-                    .frame(width: UIScreen.main.bounds.size.width - 40, height: 65)
-                    .font(.system(size: 17, weight: .bold, design: .rounded))
-                    .foregroundColor(Color.blue)
-                
-                
-                Button(action: {
-                    self.isUserInterested = true
-                }) {
-                    Text("START GAME")
-                        .font(.system(size: 17, weight: .bold))
-                        .foregroundColor(.blue)
-                        .frame(width: 200, height: 50)
-                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.blue, lineWidth: 2))
+                    
+                    HStack {
+                        Button(action: {
+                            self.isUserInterested = true
+                        }) {
+                            Text("START GAME")
+                                .padding(10)
+                                .font(.system(size: 17, weight: .bold))
+                                .foregroundColor(.blue)
+                                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.blue, lineWidth: 2))
+                        }
+                    }
+                    
+                    
+                    if self.isUserInterested {
+                        HStack {
+                            Text("Random Question: \(randomQuest.question)")
+                                .font(.system(size: 21, weight: .bold, design: .rounded))
+                                .foregroundColor(.red)
+                                .padding([.leading], 20)
+                                .background(Color.blue)
+                            Spacer()
+                        }
+                        
+                        HStack {
+                            Spacer(minLength: 20)
+                            TextField("Enter your ans", text: $answer, onCommit: {
+                                let ans = Int(self.answer) ?? 0
+                                let selectedTablee = Table(rawValue: self.selectedTable)!
+                                self.isAnsCorrect = ContentView.tables.isAnsCorrect(quest: self.randomQuest.question, table: selectedTablee, ans: ans)
+                            })
+                                .font(.system(size: 21, weight: .heavy, design: .rounded))
+                            Spacer(minLength: 20)
+                        }
+                    }
+                    if self.isAnsCorrect {
+                        Text(self.randomQuest.question + "\(answer) is Correct")
+                            .foregroundColor(.green)
+                            .font(.system(size: 21, weight: .heavy, design: .rounded))
+                    }
                 }
-                
-                
-                if self.isUserInterested {
-                    Text("Random Question: \(randomQuest.question)")
-                    .font(.system(size: 21, weight: .bold, design: .rounded))
-                    .foregroundColor(.red)
-
-                    TextField("Enter your ans", text: $answer, onCommit: {
-                        let ans = Int(self.answer) ?? 0
-                        let selectedTablee = Table(rawValue: self.selectedTable)!
-                        self.isAnsCorrect = ContentView.tables.isAnsCorrect(quest: self.randomQuest.question, table: selectedTablee, ans: ans)
-                    })
-                    .font(.system(size: 21, weight: .heavy, design: .rounded))
-                    .frame(width: UIScreen.main.bounds.size.width - 40, height: 50)
-                }
-                if self.isAnsCorrect {
-                    Text(self.randomQuest.question + "\(answer) is Correct")
-                        .foregroundColor(.green)
-                        .font(.system(size: 21, weight: .heavy, design: .rounded))
-                }
+                Spacer()
             }
             .navigationBarTitle(Text("Day 35 Challenge Project"), displayMode: .inline)
         }
