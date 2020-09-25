@@ -29,6 +29,7 @@ class Habits: ObservableObject {
 
 struct ContentView: View {
     @ObservedObject var habits: Habits
+    @State private var showCreateHabit = false
     
     var body: some View {
         NavigationView {
@@ -47,9 +48,11 @@ struct ContentView: View {
                 }
             }
             .navigationBarItems(trailing: Button("Create") {
-                print("Todo")
+                self.showCreateHabit.toggle()
             })
             .navigationBarTitle("Habit Tracking App")
+        }.sheet(isPresented: $showCreateHabit) {
+            CreateHabitView(habits: habits)
         }
     }
 }

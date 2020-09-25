@@ -11,6 +11,7 @@
 		0785F687251CF03A0081C366 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785F686251CF03A0081C366 /* ContentView.swift */; };
 		0785F689251CF03E0081C366 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0785F688251CF03E0081C366 /* Assets.xcassets */; };
 		0785F68C251CF03E0081C366 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0785F68B251CF03E0081C366 /* Preview Assets.xcassets */; };
+		07964072251E3FB0003BB07A /* CreateHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07964071251E3FB0003BB07A /* CreateHabitView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		0785F688251CF03E0081C366 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0785F68B251CF03E0081C366 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0785F68D251CF03E0081C366 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07964071251E3FB0003BB07A /* CreateHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateHabitView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			children = (
 				0785F684251CF03A0081C366 /* Day_47App.swift */,
 				0785F686251CF03A0081C366 /* ContentView.swift */,
+				07964071251E3FB0003BB07A /* CreateHabitView.swift */,
 				0785F688251CF03E0081C366 /* Assets.xcassets */,
 				0785F68D251CF03E0081C366 /* Info.plist */,
 				0785F68A251CF03E0081C366 /* Preview Content */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07964072251E3FB0003BB07A /* CreateHabitView.swift in Sources */,
 				0785F687251CF03A0081C366 /* ContentView.swift in Sources */,
 				0785F685251CF03A0081C366 /* Day_47App.swift in Sources */,
 			);
