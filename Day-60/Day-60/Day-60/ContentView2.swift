@@ -14,8 +14,18 @@ struct ContentView2: View {
             List {
                 ForEach(personArray, id:\.id) { person in
                     VStack(alignment: .leading) {
-                        Text(person.name)
-                            .foregroundColor(.primary)
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(person.name)
+                                    .foregroundColor(Color.primary)
+                                    .fontWeight(.black)
+                                Text(person.email)
+                                    .foregroundColor(Color.blue)
+                            }
+                            Spacer()
+                            Text(person.isActive ? "Active" : "Non-Active")
+                                .foregroundColor(person.isActive ? Color.blue : Color.red)
+                        }
                         Text("\(person.friends.count) Friends")
                             .foregroundColor(.secondary)
                     }
