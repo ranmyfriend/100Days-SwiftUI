@@ -13,6 +13,7 @@
 		074068942531FD2100BABB59 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 074068932531FD2100BABB59 /* Preview Assets.xcassets */; };
 		0740689D253203D700BABB59 /* ContentView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0740689C253203D700BABB59 /* ContentView2.swift */; };
 		074068A02532040300BABB59 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0740689F2532040300BABB59 /* Person.swift */; };
+		0778443025363D5200459612 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0778442F25363D5200459612 /* ActivityIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		074068952531FD2100BABB59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0740689C253203D700BABB59 /* ContentView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView2.swift; sourceTree = "<group>"; };
 		0740689F2532040300BABB59 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		0778442F25363D5200459612 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				0740689C253203D700BABB59 /* ContentView2.swift */,
 				0740689F2532040300BABB59 /* Person.swift */,
 				0740688E2531FD1E00BABB59 /* ContentView.swift */,
+				0778442F25363D5200459612 /* ActivityIndicator.swift */,
 				074068902531FD2100BABB59 /* Assets.xcassets */,
 				074068952531FD2100BABB59 /* Info.plist */,
 				074068922531FD2100BABB59 /* Preview Content */,
@@ -145,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0740689D253203D700BABB59 /* ContentView2.swift in Sources */,
+				0778443025363D5200459612 /* ActivityIndicator.swift in Sources */,
 				0740688F2531FD1E00BABB59 /* ContentView.swift in Sources */,
 				0740688D2531FD1E00BABB59 /* Day_60App.swift in Sources */,
 				074068A02532040300BABB59 /* Person.swift in Sources */,

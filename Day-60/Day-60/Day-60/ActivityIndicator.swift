@@ -11,7 +11,6 @@ struct ActivityIndicator: View {
     
     @State private var isAnimating: Bool = false
     
-    
     var body: some View {
         GeometryReader { geometry in
             ForEach(0..<5) { index in
@@ -42,6 +41,7 @@ struct ActivityIndicator: View {
         } else {
             value = 0.2 + CGFloat(index) / 5.0
         }
+        
         return value
     }
 }
@@ -49,6 +49,14 @@ struct ActivityIndicator: View {
 
 struct ActivityIndicator_Previews: PreviewProvider {
     static var previews: some View {
-        ActivityIndicator()
+//        NavigationView {
+            GeometryReader { geo in
+                ActivityIndicator()
+                    .frame(width: geo.size.width, height: geo.size.height)
+                    .foregroundColor(.orange)
+                    .background(Color.green)
+//            }
+//            .navigationBarTitle("Activity Indicator")
+        }
     }
 }
