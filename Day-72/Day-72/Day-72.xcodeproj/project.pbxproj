@@ -16,6 +16,7 @@
 		070FCCA52547207000249674 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070FCCA12547206F00249674 /* EditView.swift */; };
 		070FCCA62547207000249674 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070FCCA22547207000249674 /* MapView.swift */; };
 		070FCCA9254720FB00249674 /* MKPointAnnotation-Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070FCCA8254720FB00249674 /* MKPointAnnotation-Codable.swift */; };
+		070FCCAC2548741300249674 /* MyMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070FCCAB2548741300249674 /* MyMapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		070FCCA12547206F00249674 /* EditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		070FCCA22547207000249674 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		070FCCA8254720FB00249674 /* MKPointAnnotation-Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPointAnnotation-Codable.swift"; sourceTree = "<group>"; };
+		070FCCAB2548741300249674 /* MyMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			children = (
 				070FCC8E2547200800249674 /* Day_72App.swift */,
 				070FCC902547200800249674 /* ContentView.swift */,
+				070FCCAB2548741300249674 /* MyMapView.swift */,
 				070FCCA12547206F00249674 /* EditView.swift */,
 				070FCCA22547207000249674 /* MapView.swift */,
 				070FCC9F2547206F00249674 /* MKPointAnnotation-ObservableObject.swift */,
@@ -154,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				070FCCA9254720FB00249674 /* MKPointAnnotation-Codable.swift in Sources */,
+				070FCCAC2548741300249674 /* MyMapView.swift in Sources */,
 				070FCC912547200800249674 /* ContentView.swift in Sources */,
 				070FCCA62547207000249674 /* MapView.swift in Sources */,
 				070FCCA52547207000249674 /* EditView.swift in Sources */,

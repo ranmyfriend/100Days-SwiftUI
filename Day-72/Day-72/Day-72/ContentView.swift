@@ -19,44 +19,17 @@ struct ContentView: View {
     @State private var selectedPlace: MKPointAnnotation?
     @State private var showingPlaceDetails = false
     @State private var showingEditScreen = false
-    @State private var isUnlocked = false
+    @State private var isUnlocked = true
+    @State private var alertTitle: String = ""
+    @State private var alertMsg: String = ""
+    @State private var showAlert: Bool = false
     
     var body: some View {
         ZStack {
             if isUnlocked {
-                MapView(centerCoordinate: $centerCoordinate,
-                        selectedPlace: $selectedPlace,
-                        showingPlaceDetails: $showingPlaceDetails,
-                        annotations: locations)
-                    .edgesIgnoringSafeArea(.all)
-                Circle()
-                    .fill(Color.blue)
-                    .opacity(0.3)
-                    .frame(width: 32, height: 32)
-                
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        Button(action: {
-                            let newLocation = CodableMKPointAnnotation()
-                            newLocation.title = "Example Location"
-                            newLocation.coordinate = self.centerCoordinate
-                            self.locations.append(newLocation)
-                            self.selectedPlace = newLocation
-                            self.showingEditScreen = true
-                        }, label: {
-                            Image(systemName: "plus")
-                        })
-                        .padding()
-                        .background(Color.black.opacity(0.75))
-                        .foregroundColor(Color.white)
-                        .font(.title)
-                        .clipShape(Circle())
-                    }
-                }
+                MyMapView(centerCoordinate: $centerCoordinate, locations: $locations, selectedPlace: $selectedPlace, showingPlaceDetails: $showingPlaceDetails, showingEditScreen: $showingEditScreen)
             } else {
-                Button("Unlock places") {
+                 Button("Unlock places") {
                     self.authenticate()
                 }
                 .padding()
@@ -69,6 +42,9 @@ struct ContentView: View {
             Alert(title: Text(selectedPlace?.title ?? "Unknown"), message: Text(selectedPlace?.subtitle ?? "Missing place information"), primaryButton: .default(Text("OK")), secondaryButton: .default(Text("Edit")) {
                 self.showingEditScreen = true
             })
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text(self.alertTitle), message: Text(self.alertMsg), dismissButton: .default(Text("OK")))
         }
         .sheet(isPresented: $showingEditScreen, onDismiss: saveData) {
             if self.selectedPlace != nil {
@@ -90,6 +66,9 @@ struct ContentView: View {
             let data = try Data(contentsOf: fileName)
             locations = try JSONDecoder().decode([CodableMKPointAnnotation].self, from: data)
         } catch {
+            showAlert = true
+            alertTitle = "Error"
+            alertMsg = "Unable to load saved data."
             print("Unable to load saved data.")
         }
     }
