@@ -28,9 +28,13 @@ struct ContentView: View {
                     .autocapitalization(.none)
                     .padding()
                 
-                List(usedWords, id:\.self) {
-                    Image(systemName: "\($0.count).circle") //This will shows the count of word in SF Circle image
-                    Text($0)
+                List(usedWords, id:\.self) { word in
+                    HStack {
+                        Image(systemName: "\(word.count).circle") //This will shows the count of word in SF Circle image
+                        Text(word)
+                    }
+                    .accessibilityElement(children: .ignore)
+                    .accessibility(label: Text("\(word) \(word.count) letters"))
                 }
             }
             .navigationBarTitle(rootWord)
