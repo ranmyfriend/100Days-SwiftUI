@@ -23,6 +23,7 @@ struct ContentView_Stepper: View {
             //step: 0.25 is incrementing by 0.25 each time when you do minus and plus
             //And once you given value as Int then the step should not be given as double. both the datatype should match
             Text("\(sleepHours, specifier: "%g") hours") //Here we can user "%.2f" but it will should 8.00 also but we want only number after the decimal and neglect the zeros. Thats why the "%g" comes here.
+                .accessibility(label: Text("\(sleepHours) sleep hours"))
         }
     }
 }
