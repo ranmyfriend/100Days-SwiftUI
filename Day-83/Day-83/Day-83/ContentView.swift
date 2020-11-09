@@ -12,6 +12,10 @@ import SwiftUI
 //2)Scanning QR codes with SwiftUI
 //3)Adding options with a context menu
 
+//Day-84
+//1)Saving and loading data with UserDefaults
+//2)Posting notifications to the lock screen
+
 struct ContentView: View {
     var prospects = Prospects()
     
