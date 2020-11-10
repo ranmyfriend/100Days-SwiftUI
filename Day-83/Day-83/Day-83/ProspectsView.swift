@@ -28,11 +28,11 @@ struct ProspectsView: View {
     var filteredProspects: [Prospect] {
         switch filter {
         case .none:
-            return prospects.people
+            return prospects.people.sorted()
         case .contacted:
-            return prospects.people.filter{$0.isContacted}
+            return prospects.people.filter{$0.isContacted}.sorted()
         case .uncontacted:
-            return prospects.people.filter{!$0.isContacted}
+            return prospects.people.filter{!$0.isContacted}.sorted()
         }
     }
     
@@ -40,11 +40,14 @@ struct ProspectsView: View {
         NavigationView {
             List {
                 ForEach(filteredProspects) { prospect in
-                    VStack(alignment: .leading) {
-                        Text(prospect.name)
-                            .font(.headline)
-                        Text(prospect.emailAddress)
-                            .foregroundColor(.secondary)
+                    HStack {
+                        Image(systemName: prospect.isContacted ? "checkmark.circle" : "questionmark.diamond")
+                        VStack(alignment: .leading) {
+                            Text(prospect.name)
+                                .font(.headline)
+                            Text(prospect.emailAddress)
+                                .foregroundColor(.secondary)
+                        }
                     }
                     .contextMenu {
                         Button(prospect.isContacted ? "Mark Uncontacted" : "Mark Contacted") {
@@ -67,7 +70,7 @@ struct ProspectsView: View {
                 Text("Scan")
             }))
             .sheet(isPresented: $isShowingScanner) {
-                CodeScannerView(codeTypes: [.qr], simulatedData: "Ranjith\ndrawRect.com", completion: self.handleScan)
+                CodeScannerView(codeTypes: [.qr], simulatedData: "Ragavan\ndrawRect.com", completion: self.handleScan)
             }
         }
     }

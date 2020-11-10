@@ -16,6 +16,10 @@ import SwiftUI
 //1)Saving and loading data with UserDefaults
 //2)Posting notifications to the lock screen
 
+//Day-85
+//Challenge
+//https://www.hackingwithswift.com/books/ios-swiftui/hot-prospects-wrap-up
+
 struct ContentView: View {
     var prospects = Prospects()
     

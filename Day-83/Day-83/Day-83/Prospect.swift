@@ -7,14 +7,24 @@
 
 import SwiftUI
 
-class Prospect: Identifiable, Codable {
+class Prospect: Identifiable, Codable, Comparable {
+    static func < (lhs: Prospect, rhs: Prospect) -> Bool {
+        return lhs.name < rhs.name
+    }
+    
+    static func == (lhs: Prospect, rhs: Prospect) -> Bool {
+        return lhs.name < rhs.name
+    }
+    
     var id = UUID()
     var name = "Anonymous"
     var emailAddress = ""
    fileprivate(set) var isContacted = false
+    
 }
 
 class Prospects: ObservableObject {
+    
     @Published private(set) var people: [Prospect]
     static let saveKey = "SavedData "
     
